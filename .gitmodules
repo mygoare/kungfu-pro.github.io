@@ -1,4 +1,0 @@
-[submodule "public"]
-	path = public
-	url = git@github.com:kungfu-pro/kungfu-site.git
-	branch = gh-page
