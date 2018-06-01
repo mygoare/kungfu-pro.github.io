@@ -1,0 +1,20 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+theme = "coder"
+
+[params] # theme parameters
+    author = "kungfu" # author's name
+    info = "Full Stack DevOps and Magician" # author's job title or info
+    description = "website" # site description
+    keywords = "blog,developer,personal" # site keywords
+
+    # wether you want to hide copyright and credits in the footer
+    hideCredits = true
+    hideCopyright = true
+
+# Menu links
+[[menu.main]]
+    name = "Blog"
+    weight = 1
+    url  = "/posts/"
