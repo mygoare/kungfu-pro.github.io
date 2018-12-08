@@ -190,7 +190,7 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 serverId: 035aee8838c937f0b748ecc19239507f61ede3fa
 购买版本：Standard
 付款方式：微信扫码
-付款时间：2018-12-25 23:00 (左右)
+附： 支付截图
 ```
 
 ![](../static/weixin.png)
