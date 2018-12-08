@@ -168,10 +168,10 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 
 **价格方案**
 
-| Beta 版 | Trial 版 | Standard 版 | Professional 版 |          |
-|--------|---------|------------|----------------|----------|
-| 规则数    | 30      | 5          | 200            | 99999999 |
-| 价格     | 免费      | 免费         | ￥89/年          | ￥199/年   |
+| &nbsp; | Beta 版 | Trial 版 | Standard 版 | Professional 版 |
+|--------|--------|---------|------------|----------------|
+| 规则数    | 30     | 5       | 200        | 99999999       |
+| 价格     | 免费     | 免费      | ￥89/年      | ￥199/年         |
 
 > 轻度使用 5 条规则基本够用 <br>
 > Beta 版用于尝鲜，过期后降级为 Trail 版本，Beta 版授权码不定期放出
@@ -193,6 +193,17 @@ serverId: 035aee8838c937f0b748ecc19239507f61ede3fa
 ![](../static/weixin.png)
 
 ## 更新日志
+
+下载：https://github.com/kungfu-pro/kungfu-pro-issues/releases
+
 * **v0.0.8** <br>
   date: 2018-12-08 <br>
   稳定版，添加了自定义 hosts 功能
+
+
+## License
+
+Beta:
+```plain
+H4sIAAAAAAAA/wCgAV/+kD/DB12/kOn8X//b8b82kUaJmat5TDh5fGRSZuFg/OvNLL4gGT4IjyOZd6MTvARxPUCEnnHdg5rH8he/YuyfdasGKxRoWTWbKcQFdF5AcaxbsI0HmJBuaRWgTyb1ENAulQEPOEWN0HIMuxYtBR1hfTisR2yy6zKYZ6dwmOIQLe+nVExv6qelFw5TpeFiWr2xfEFTh70LmjYOsTtEcGumc0+tgt+faVca0vrcYPWYT5gqHaj0HNFLw4TESO766MeKJ6BUZ1zOl6sE6AeNrM6DBYD7l4e7foTF6SpG6o4k5NI+nx3aMYBU8j0rBqLUIUQR0L+R2YwdZdbORZFL4uPN54DxoBLM4+qncCmBwZ+5Hi3FoMlQXBCK4FtlbrhJhNJR/PyNzFji4OH0l04+jwXfNdxXoYqVJpNt1TeymUcVJ9ErPtF10eZ4LxZ9q98eju1YnFTKySSlCtku25FODLsPcOWF6oS0Yf+6OghHowFwQR5Sji+8jg++om9m+NC5j9cmH9XRAEl2jbGsGKvwyils1v5k/bctLqhuN5DixjQvQpABAAD//+Z1y5igAQAAX01ea
+```
