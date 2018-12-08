@@ -140,8 +140,8 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 
 1. 网络故障，不通，建议 tcpdump 抓包看看，是否数据包已抵达 Kung Fu Pro 所在服务器。
 1. 如何定位正在使用那个代理？<br>
-   通过 dns 反查, 通过返回的 TXT 信息定位，到底走了哪个代理出去 <br>
-   ```
+  通过 dns 反查, 通过返回的 TXT 信息定位，到底走了哪个代理出去 <br>
+  ```
   ~# dig -x 10.172.0.21
 
   ; <<>> DiG 9.11.3-1ubuntu1.2-Ubuntu <<>> -x 10.172.0.21
@@ -163,7 +163,7 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
   ;; SERVER: 10.172.0.1#53(10.172.0.1)
   ;; WHEN: Sat Dec 08 14:43:35 CST 2018
   ;; MSG SIZE  rcvd: 214
-   ```
+  ```
 
 ## 升级
 
