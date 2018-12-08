@@ -1,1 +1,3 @@
-# English document coming soon
+# Kung Fu Pro
+
+!> English document coming soon.
