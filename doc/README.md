@@ -213,4 +213,4 @@ H4sIAAAAAAAA/wCgAV/+kD/DB12/kOn8X//b8b82kUaJmat5TDh5fGRSZuFg/OvNLL4gGT4IjyOZd6MT
 
 ## 沟通
 
-Telegram: https://t.me/joinchat/LavVxxNtwXdTz7m5M0_c1g
+Telegram: https://t.me/kungfupro
