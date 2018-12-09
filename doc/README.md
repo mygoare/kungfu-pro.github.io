@@ -193,7 +193,7 @@ serverId: 035aee8838c937f0b748ecc19239507f61ede3fa
 附： 支付截图
 ```
 
-![](../static/weixin.png)
+![](../static/weixin-dashang.png)
 
 ## 更新日志
 
