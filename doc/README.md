@@ -199,10 +199,6 @@ serverId: 035aee8838c937f0b748ecc19239507f61ede3fa
 
 下载：https://github.com/kungfu-pro/kungfu-pro-issues/releases
 
-* **v0.0.8** <br>
-  date: 2018-12-08 <br>
-  稳定版，添加了自定义 hosts 功能
-
 
 ## License
 
