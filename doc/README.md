@@ -136,6 +136,20 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 
 参考 “企业实现统一科学上网”，只需要下载 arm 平台的包即可。
 
+### ubnt EdgeRouter™ X 
+
+ubnt ER-X 路由器是基于 linux mips 架构
+
+* 设置路由器，开启 dnsmasq
+* 设置 dnsmasq 添加 option `port=0` 关闭路由器内置的 DNS server
+* sftp 或 scp 上传 `kungfu-vx.x.x.linux-mipsle.tar.gz` （目录随意，可以放 ubnt 家目录： /home/ubnt)
+* 解压，修改 config.json, 然后 `sudo ./kungfu ` 启动服务
+* 添加自动启动脚本，放到 `/config/scripts/post-config.d/` 目录即可，注意脚本需要有可执行权限
+
+以上，kungfu pro 服务就搭建好了
+
+> ubnt 其他系列是否支持，我们暂时没有实践。
+
 ## 故障排除
 
 * 网络故障，不通，建议 tcpdump 抓包看看，是否数据包已抵达 Kung Fu Pro 所在服务器。
@@ -167,20 +181,22 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 
 ## License
 
-> 这并不是一个完全免费的工具，但是试用版已满足大部分的用户需要。<br>
+> 这并不是一个完全免费的工具。
 > 再次声明，本工具主要解决的痛点是代理的"最后一公里" -- 内网。
 > 主要推荐在团队或者企业内部使用。
-> 
+> 如果你是相关负责人，我们建议先做好相关测试/试用再考虑购买。
 
 **价格方案**
 
 | &nbsp; | Beta 版 | Trial 版 | Standard 版 | Professional 版 |
 |--------|--------|---------|------------|----------------|
-| 规则数    | 30     | 5       | 200        | 99999999       |
+| 规则数    | 30 ~ 500  | 5       | 200        | 99999999       |
 | 价格     | 免费     | 免费      | ￥89/年      | ￥199/年         |
 
-> <small>Beta 版用于尝鲜，过期后降级为 Trail 版本，Beta 版授权码不定期放出 <br>
-> 降级造成的规则条数超限，超限规则不会被删除，但会被停用。</small>
+> <small>Beta 版用于尝鲜，过期后降级为 Trail 版本。<br>
+> 降级造成的规则条数超限，超限规则不会被删除，但会被停用。<br><br>
+> Beta 版授权码不定期放出，规则数量不定。
+></small>
 
 **如何购买？**
 
@@ -206,7 +222,7 @@ serverId: 035aee8838c937f0b748ecc19239507f61ede3fa
 
 Beta License:
 ```plain
-H4sIAAAAAAAA/wCgAV/+kD/DB12/kOn8X//b8b82kUaJmat5TDh5fGRSZuFg/OvNLL4gGT4IjyOZd6MTvARxPUCEnnHdg5rH8he/YuyfdasGKxRoWTWbKcQFdF5AcaxbsI0HmJBuaRWgTyb1ENAulQEPOEWN0HIMuxYtBR1hfTisR2yy6zKYZ6dwmOIQLe+nVExv6qelFw5TpeFiWr2xfEFTh70LmjYOsTtEcGumc0+tgt+faVca0vrcYPWYT5gqHaj0HNFLw4TESO766MeKJ6BUZ1zOl6sE6AeNrM6DBYD7l4e7foTF6SpG6o4k5NI+nx3aMYBU8j0rBqLUIUQR0L+R2YwdZdbORZFL4uPN54DxoBLM4+qncCmBwZ+5Hi3FoMlQXBCK4FtlbrhJhNJR/PyNzFji4OH0l04+jwXfNdxXoYqVJpNt1TeymUcVJ9ErPtF10eZ4LxZ9q98eju1YnFTKySSlCtku25FODLsPcOWF6oS0Yf+6OghHowFwQR5Sji+8jg++om9m+NC5j9cmH9XRAEl2jbGsGKvwyils1v5k/bctLqhuN5DixjQvQpABAAD//+Z1y5igAQAAX01ea
+H4sIAAAAAAAA/wCgAV/+kD/DB12/kOn8X//b8b82kUaJmat5TDh5fGRSZuFg/OvNLL4gGT4IjyOZd6MTvARxD5G5drNLQ211ut9KIY0/OIM4awspy5X6QsSrY6JrqSU2QDuF19SmT9TmlmRf8ZUg0+5hj+VnUlI8W9SaBZ6jzdj1lDS3CRWyTkqp8lI8ZuuxCSiuEkxHpICeDl5wPChPjhr/crM2HM+SLFvMlTGRRO+A1vu1YXkjP7bOLMzBOlYyFIC8wbJBn+odmGrUs902yq6WkvnGH9QBYG9J985/xSOhNPCnTrgu4IGewml9b9bMQnoDd0upmXxhika1V4EV3xx30UxrytzTWf5rXoq6DkQG9c49s1SeXlPAWQOtZTA5ubZikBYvDe9du8/DFImiUW6AXCiRU+H5sD7hE9JLgxy/kl+uF8tZEOIhf3QcncpGq9ZZWJuEUkCSaoH7RlBx6NVbAr+bYoIlNts2wsvSEs65NwJrQwtk3BKWZskNkerWeHQAxk725ZI2uhzIaCdp+CU06dyvYH8WIhXxcN7A7JE1M6ddkc3ZW5NHvwB2DU8BAAD//9Xig8+gAQAAX01ea
 ```
 
 ## 沟通
