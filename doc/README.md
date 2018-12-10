@@ -65,7 +65,7 @@ manage: 管理界面设置 <br>
 
 ## 案例
 
-### 企业实现统一科学上网
+### 企业内网服务器
 
 前提：
 
@@ -75,6 +75,7 @@ manage: 管理界面设置 <br>
 
 * 一台服务器，可以是虚拟机，Linux 2.2.x 以上内核 配置 4CPU 512M 以上内存， 100M 以上网卡 <br> 
   (条件允许，建议使用更高配置，使用千兆网络)
+* 编辑 `/etc/sysctl.conf`, 设置 `net.ipv4.ip_forward = 1` 启用转发。
 * 下载 KungFu linux 版本，修改 config.json 文件，并启动（需要 root 权限）。
 * 修改路由器（或者3层交换）添加静态路由表，路由设置参考 config.json 文件中的配置。
 * 修改内网 DHCP 服务器，设置下发 DNS 为上述部署 KungFu 的服务。
@@ -106,7 +107,7 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 > 后续配置：合理划分 vlan，添加服务负载。
 
 
-### 梅林系统（路由器）实现科学上网
+### 梅林系统（路由器）
 
 实验环境：
 
@@ -126,7 +127,7 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 > 后续：设置开机启动，修改 `/jffs/configs/post-mount` 添加启动 KungFu Pro 脚本（命令）
 
 
-### 树莓派实现小型局域网科学上网
+### 树莓派
 
 前提：
 
@@ -134,7 +135,7 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 
 安装步骤：
 
-参考 “企业实现统一科学上网”，只需要下载 arm 平台的包即可。
+参考 “企业内网服务器”，只需要下载 arm 平台的包即可。
 
 ### ubnt EdgeRouter™ X 
 
@@ -248,7 +249,8 @@ Telegram: https://t.me/kungfupro
   > 在我们看来目前增加混淆并不能降低封锁风险。如果你实在需要建议搭建中间件，在本软件中使用 socks5 协议。
 
 * WireGuard, v2ray 有何计划？
-  > 现在用户太少，目前没有动力迭代，请先用 socks5 顶一下。 -_-!!
+  > 现在用户太少，目前没有动力迭代，请先用 socks5 顶一下。 -_-!!  <br>
+  > 类似其他新特性需求也暂时没有计划，短期内只会做一些小的优化。
 
 ## 附录
 
