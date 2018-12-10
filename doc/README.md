@@ -138,9 +138,9 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 
 ## 故障排除
 
-1. 网络故障，不通，建议 tcpdump 抓包看看，是否数据包已抵达 Kung Fu Pro 所在服务器。
-1. 如何定位正在使用那个代理？<br>
-  通过 dns 反查, 通过返回的 TXT 信息定位，到底走了哪个代理出去 <br>
+* 网络故障，不通，建议 tcpdump 抓包看看，是否数据包已抵达 Kung Fu Pro 所在服务器。
+* 如何定位正在使用那个代理？<br>
+  通过 dns 反查, 查看返回的 TXT 信息定位，到底走了哪个代理出去 <br>
   ```
   ~# dig -x 10.172.0.21
 
@@ -165,9 +165,12 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
   ;; MSG SIZE  rcvd: 214
   ```
 
-## 升级
+## License
 
-> 这并不是一个完全免费的工具，但是试用版已满足大部分的用户需要。
+> 这并不是一个完全免费的工具，但是试用版已满足大部分的用户需要。<br>
+> 再次声明，本工具主要解决的痛点是代理的"最后一公里" -- 内网。
+> 主要推荐在团队或者企业内部使用。
+> 
 
 **价格方案**
 
@@ -176,8 +179,8 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 | 规则数    | 30     | 5       | 200        | 99999999       |
 | 价格     | 免费     | 免费      | ￥89/年      | ￥199/年         |
 
-> 轻度使用 5 条规则基本够用 <br>
-> Beta 版用于尝鲜，过期后降级为 Trail 版本，Beta 版授权码不定期放出
+> <small>Beta 版用于尝鲜，过期后降级为 Trail 版本，Beta 版授权码不定期放出 <br>
+> 降级造成的规则条数超限，超限规则不会被删除，但会被停用。</small>
 
 **如何购买？**
 
@@ -195,14 +198,13 @@ serverId: 035aee8838c937f0b748ecc19239507f61ede3fa
 
 ![](../static/weixin-dashang.png)
 
-## 更新日志
+## 下载 & 更新
 
 下载：https://github.com/kungfu-pro/kungfu-pro-issues/releases
 
+> Tips: <small>点击 github 上的 watch 关注，即可获得更新通知。</small>
 
-## License
-
-Beta:
+Beta License:
 ```plain
 H4sIAAAAAAAA/wCgAV/+kD/DB12/kOn8X//b8b82kUaJmat5TDh5fGRSZuFg/OvNLL4gGT4IjyOZd6MTvARxPUCEnnHdg5rH8he/YuyfdasGKxRoWTWbKcQFdF5AcaxbsI0HmJBuaRWgTyb1ENAulQEPOEWN0HIMuxYtBR1hfTisR2yy6zKYZ6dwmOIQLe+nVExv6qelFw5TpeFiWr2xfEFTh70LmjYOsTtEcGumc0+tgt+faVca0vrcYPWYT5gqHaj0HNFLw4TESO766MeKJ6BUZ1zOl6sE6AeNrM6DBYD7l4e7foTF6SpG6o4k5NI+nx3aMYBU8j0rBqLUIUQR0L+R2YwdZdbORZFL4uPN54DxoBLM4+qncCmBwZ+5Hi3FoMlQXBCK4FtlbrhJhNJR/PyNzFji4OH0l04+jwXfNdxXoYqVJpNt1TeymUcVJ9ErPtF10eZ4LxZ9q98eju1YnFTKySSlCtku25FODLsPcOWF6oS0Yf+6OghHowFwQR5Sji+8jg++om9m+NC5j9cmH9XRAEl2jbGsGKvwyils1v5k/bctLqhuN5DixjQvQpABAAD//+Z1y5igAQAAX01ea
 ```
@@ -210,3 +212,113 @@ H4sIAAAAAAAA/wCgAV/+kD/DB12/kOn8X//b8b82kUaJmat5TDh5fGRSZuFg/OvNLL4gGT4IjyOZd6MT
 ## 沟通
 
 Telegram: https://t.me/kungfupro
+
+
+## FAQ
+
+* 是否支持 UDP relay，如何确认我的配置已经工作良好? 
+  > 目前仅 shadowsocks 代理协议支持 udp 转发（并且依赖服务端开启 udp relay)。
+  你可以通过向 google 公共 DNS 服务器查询（注意，要用域名）任意域名的 A 记录。 来确认 KungFu 的 UDP relay 是工作的。 <br>
+  例如执行 `dig @google-public-dns-a.google.com google.com`，如果工作正常，返回结果应该和你直接在代理服务器上执行的效果一致。
+
+* 如何应对 DNS 污染？
+  > 不需要额外处理，你只用关系规则的维护，符合规则的请求会自动规避 DNS 污染问题。
+
+* 我们团队需要部署多个实例，我可以只购买一份 License 吗？
+  > 可以，请和我们联系获取优惠。
+
+* SSR 什么时候支持？
+  > 用户大于2000 或者 tg 群超过 2000人。
+  > 在我们看来目前增加混淆并不能降低封锁风险。如果你实在需要建议搭建中间件，在本软件中使用 socks5 协议。
+
+* WireGuard, v2ray 有何计划？
+  > 现在用户太少，目前没有动力迭代，请先用 socks5 顶一下。 -_-!!
+
+## 附录
+
+### 批量添加 gfwlist 规则
+
+在浏览器 console 中执行如下代码，将转换结果，导入到规则
+
+> 不是很建议这么做，很多规则对一般用户没有意义，我们建议你按需添加即可。
+
+```javascript
+(async (copy) => {
+  const getHostname = (str) => {
+    const a = document.createElement('a');
+    a.href = str
+
+    let hostname = a.hostname
+    if (hostname.indexOf('%2A') !== -1) {
+      const items = []
+      for (const it of a.hostname.split('.')) {
+        if (it.indexOf('%2A') !== -1) {
+          continue
+        }
+        items.push(it)
+      }
+      hostname = items.join('.')
+    }
+    return hostname
+  }
+
+  console.log('获取中，请稍后……')
+  const content = await fetch('https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt')
+  const body = await content.text()
+  const plain = atob(body)
+  const res = new Set()
+  for (let line of plain.split(/\n/)) {
+    line = line.trim()
+    if (!line || line.startsWith('!')) {
+      continue
+    }
+
+    if (line.startsWith('@@||')) {
+      continue
+    }
+
+    if (line.startsWith('@@')) {
+      continue
+    }
+
+    if (line.startsWith('/')) {
+      continue
+    }
+
+    if (line.startsWith('||')) {
+      res.add(line.substr(2))
+      continue
+    }
+
+    if (line.startsWith('|http')) {
+      res.add(getHostname(line.substr(1)))
+      continue
+    }
+
+    if (line.startsWith('.')) {
+      res.add(getHostname(`http://${line.substr(1)}`))
+      continue
+    }
+  }
+
+  const finals = []
+  for (const it of res) {
+    if (it.indexOf('.') === -1) {
+      continue
+    }
+
+    if (it.indexOf('google') !== -1) {
+      continue
+    }
+
+    if (/\d+\.\d+\.\d+\.\d+/ig.test(it)) {
+      continue
+    }
+
+    finals.push(it)
+  }
+
+  copy(finals.join('\n'))
+  console.log('Done! 规则已拷贝到剪切板，请前往规则设置，添加域名后缀规则吧。')
+})(copy)
+```
