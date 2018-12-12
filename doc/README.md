@@ -63,7 +63,7 @@ manage: 管理界面设置 <br>
   &nbsp;&nbsp;address: 为管理功能绑定的ip和端口号<br>
   &nbsp;&nbsp;auth: admin 为用户名，123456 为密码 （支持配置多个用户）
 
-## 案例
+## 案例/使用
 
 ### 企业内网服务器
 
@@ -139,7 +139,10 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 
 ### ubnt EdgeRouter™ X 
 
-ubnt ER-X 路由器是基于 linux mips 架构
+ubnt ER-X 路由器是基于 linux mips 架构，有不少家庭用户在弱电箱选择安装了该路由器。 
+
+官方 https://www.ubnt.com.cn/edgemax/edgerouter-x/  <br>
+某宝 https://s.taobao.com/search?q=ubnt+ER-X
 
 * 设置路由器，开启 dnsmasq
 * 设置 dnsmasq 添加 option `port=0` 关闭路由器内置的 DNS server
@@ -150,6 +153,23 @@ ubnt ER-X 路由器是基于 linux mips 架构
 以上，kungfu pro 服务就搭建好了
 
 > ubnt 其他系列是否支持，我们暂时没有实践。
+
+
+### Docker
+
+> 你可也可以使用 docker 运行，镜像很小，大约 20M
+
+* 创建 config.json (参考前面的配置), 下一步将当前目录映射到容器的 /data 文件夹内，需要有配置文件。
+* 运行 (确保宿主机的 udp 53 端口，和 tcp 的管理端口没有被占用)
+  ```bash
+  docker run --privileged \
+    --restart unless-stopped \
+    --net=host --name kungfu \
+    -v $(pwd):/data -d clachlan978/kungfu
+  ```
+  > 注意需要，kungfu 要使用 53 端口，并且创建 tun 设备, 需要用特权模式。
+* 修改路由器，增加路由规则，下一跳到容器宿主机
+
 
 ## 故障排除
 
