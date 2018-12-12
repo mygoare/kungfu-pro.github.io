@@ -167,7 +167,7 @@ ubnt ER-X 路由器是基于 linux mips 架构，有不少家庭用户在弱电�
     --net=host --name kungfu \
     -v $(pwd):/data -d clachlan978/kungfu
   ```
-  > 注意需要，kungfu 要使用 53 端口，并且创建 tun 设备, 需要用特权模式。
+  > 注意: kungfu 要使用 53 端口，并且创建 tun 设备, 需要用特权模式。
 * 修改路由器，增加路由规则，下一跳到容器宿主机
 
 
