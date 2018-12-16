@@ -261,6 +261,18 @@ serverId: 035aee8838c937f0b748ecc19239507f61ede3fa
 
 > Tips: <small>点击 github 上的 watch 关注，即可获得更新通知。</small>
 
+### 升级
+
+1. 停止服务
+2. 备份 `kungfu.db`
+3. 下载最新版本的程序覆盖
+
+Docker 用户
+1. 停止服务 `docker stop kungfu`
+2. 备份 `kungfu.db`
+3. 删除旧版本容器 `docker rm kungfu`
+4. 拉取最新版本镜像并启动（参考 [使用 Docker](#docker)）
+
 Beta License:
 ```plain
 H4sIAAAAAAAA/wCgAV/+kD/DB12/kOn8X//b8b82kUaJmat5TDh5fGRSZuFg/OvNLL4gGT4IjyOZd6MTvARxD5G5drNLQ211ut9KIY0/OJZsAKY6UlU91pYFk8kUBzMfpJwyprjwCNLPF7kUR/yULZj2PLEC8MQW86GUH67i9mkaKIlzlTi3Lloma02PuGPE2VjUANLrk8ZKi04O1fzEgN7dP9HUvN7ISStBs+uFdFfRmSqY7WxRnGIYk0R1UelD8DH01UcuRIsnFmM8nplzJdrQNnxUtm3CTIaZppy7zEeUdzJddCPQfn4gLkpkQH3KrLsksgGS8w1lsn0FTby+13vvyvDdeSjCVEs26I2KEPtVADChnVtOyhAG4X0Pt2xGl+Ub2Wb4xNW/6rFNKTCfDqKvmpHVVPv4otCJaKR2wduLcAiZTQHTNIIEumD4VNSA/fEucEj2AnX9dyXSYc8h4mmS1cLQ7yomBWQ7/f3kyZJ0DBZzYGXQygCWQM3q0tQBmcTzKWyDGrXG+HQjSHHlf9mS6d52s9TdE69If3CU7l4fmyyrplrQfyenTJwfgMsBAAD//+Pz3bKgAQAAX01ea
