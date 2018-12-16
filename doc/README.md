@@ -1,26 +1,23 @@
 # Kung Fu Pro
 
-> 一个灵活的代理解决方案
-> 
-> 通过 DNS 劫持，充当部分网段网关角色，通过 NAT 方式实现一机配置，让整个内网均能无感的使用代理。
-> 相比传统方式效率更高性能更强，也更方便扩容。专为企业大内网环境设计，同时本身比较小巧，能在路由器运行，适合家用。
-> 
+> 一个灵活的代理解决方案，可以让整个内网自动科学上网，配置简单方便，为企业级网络设计，也适用于家庭。
+
 
 ## 适用人群
 
 * **企业用户** <br>
-  企业内部，由 IT 部门在网络层统一配置，实现部分部门或者整个内网科学上网。<br>
+  企业内部，统一配置，实现部分部门或者整个内网科学上网/或部分服务使用代理访问。<br>
 
 * **家庭用户** <br>
-  通过在路由器或者现有的 NAS、树莓派、小型工控机等方式，统一配置，实现内网所有设备，包括电视，电视盒子，游戏主机，手机等科学上网，或设置加速通道。
+  通过在路由器或者现有的 NAS、树莓派、小型工控机等方式部署，实现内网所有设备，包括电视，电视盒子，游戏主机，手机等科学上网，或设置加速通道。
 
 * **海外用户** <br>
   少量需要长期配置代理来访问限制资源的用户。
 
 * **其他** <br>
-  同时需要使用多个代理的用户，例如：使用不同的代理，访问 netflix, 访问 google，telegram，游戏加速等。
+  同时需要使用多个代理分流的用户，例如：使用不同的代理，访问 netflix, 访问 google，telegram，游戏加速等。
 
-> <del>不适用：这是一个服务器软件，因此不适用直接在手机端运行。</del> 如果你爱折腾，可以在 Android手机上运行。<br>
+> <del>不适用：这是一个服务器软件，因此不适用直接在手机端运行。</del> 如果你爱折腾，可以在 Android 手机上运行(需要 root)。<br>
 > MacOS, linux 用户可以直接使用。windows 版本暂时不支持（也许以后会开发）。
 
 ## 预览
@@ -63,13 +60,35 @@ manage: 管理界面设置 <br>
   &nbsp;&nbsp;address: 为管理功能绑定的ip和端口号<br>
   &nbsp;&nbsp;auth: admin 为用户名，123456 为密码 （支持配置多个用户）
 
+### 日志
+
+日志配置可选，会消耗一定的磁盘，开启记录日志，有助于排查问题。
+
+<details>
+  <summary>配置文件范例</summary>
+<pre data-lang="json">{
+  "network": "10.86.0.1/16",
+  "manage": {
+    "address": "0.0.0.0:3001",
+    "auth": {
+      "admin": "123456"
+    }
+  },
+  "log": {
+    "file": "logs/kungfu.log",
+    "maxSize": 100,
+    "maxDays": 3
+  }
+}</pre>
+file 日志文件路径，可以填写相当路径，或者绝对路径；<br>
+maxSize 单位 MB，表示单个日志文件最大体积；<br>
+maxDays 单位 天，表示日志做多保留天数; <br>
+</details>
+
+
 ## 案例/使用
 
 ### 企业内网服务器
-
-前提：
-
-需要评估代理服务器带宽是否充足，条件允许，大陆用户建议选用香港服务器，选择高带宽，或者直接使用流量计费模式以获得更好的体验。
 
 环境：
 
@@ -105,6 +124,7 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 ```
 
 > 后续配置：合理划分 vlan，添加服务负载。
+> 
 
 
 ### 梅林系统（路由器）
@@ -129,13 +149,13 @@ traceroute to google.com (10.172.0.21), 30 hops max, 60 byte packets
 
 ### 树莓派
 
+> 同时适用于其他类似 ARM 架构开发板, 如 arduino，香蕉派，香橙派等
+
 前提：
 
 需要路由器支持添加静态路由表。基本上几十块钱的 TP-Link 路由器都支持。
 
-安装步骤：
-
-参考 “企业内网服务器”，只需要下载 arm 平台的包即可。
+安装步骤请参考 “企业内网服务器”，选择下载 arm 平台软件包。
 
 ### ubnt EdgeRouter™ X 
 
@@ -148,11 +168,11 @@ ubnt ER-X 路由器是基于 linux mips 架构，有不少家庭用户在弱电�
 * 设置 dnsmasq 添加 option `port=0` 关闭路由器内置的 DNS server
 * sftp 或 scp 上传 `kungfu-vx.x.x.linux-mipsle.tar.gz` （目录随意，可以放 ubnt 家目录： /home/ubnt)
 * 解压，修改 config.json, 然后 `sudo ./kungfu ` 启动服务
-* 添加自动启动脚本，放到 `/config/scripts/post-config.d/` 目录即可，注意脚本需要有可执行权限
+* 添加自动启动脚本，放到 `/config/scripts/post-config.d/` 目录，注意脚本需要有可执行权限
 
 以上，kungfu pro 服务就搭建好了
 
-> ubnt 其他系列是否支持，我们暂时没有实践。
+> ubnt 其他系列是否支持，我们暂时没有测试。
 
 
 ### Docker
@@ -221,12 +241,12 @@ ubnt ER-X 路由器是基于 linux mips 架构，有不少家庭用户在弱电�
 
 **如何购买？**
 
-微信转账后请邮件发送你的 `serverId` 至邮箱： `support@kungfu-pro.tk` <br>
+微信转账后请邮件发送你的 `serverId` 至邮箱： `clachlan978@gmail.com` <br>
 可能由于时差关系，大概会在 1、2天内收到 License 激活码。小众软件，请谅解。
 
 邮件模板：
 
-```md
+```markdown
 serverId: 035aee8838c937f0b748ecc19239507f61ede3fa
 购买版本：Standard
 付款方式：微信扫码
@@ -243,7 +263,14 @@ serverId: 035aee8838c937f0b748ecc19239507f61ede3fa
 
 Beta License:
 ```plain
-H4sIAAAAAAAA/wCgAV/+kD/DB12/kOn8X//b8b82kUaJmat5TDh5fGRSZuFg/OvNLL4gGT4IjyOZd6MTvARxD5G5drNLQ211ut9KIY0/OIM4awspy5X6QsSrY6JrqSU2QDuF19SmT9TmlmRf8ZUg0+5hj+VnUlI8W9SaBZ6jzdj1lDS3CRWyTkqp8lI8ZuuxCSiuEkxHpICeDl5wPChPjhr/crM2HM+SLFvMlTGRRO+A1vu1YXkjP7bOLMzBOlYyFIC8wbJBn+odmGrUs902yq6WkvnGH9QBYG9J985/xSOhNPCnTrgu4IGewml9b9bMQnoDd0upmXxhika1V4EV3xx30UxrytzTWf5rXoq6DkQG9c49s1SeXlPAWQOtZTA5ubZikBYvDe9du8/DFImiUW6AXCiRU+H5sD7hE9JLgxy/kl+uF8tZEOIhf3QcncpGq9ZZWJuEUkCSaoH7RlBx6NVbAr+bYoIlNts2wsvSEs65NwJrQwtk3BKWZskNkerWeHQAxk725ZI2uhzIaCdp+CU06dyvYH8WIhXxcN7A7JE1M6ddkc3ZW5NHvwB2DU8BAAD//9Xig8+gAQAAX01ea
+H4sIAAAAAAAA/wCgAV/+kD/DB12/kOn8X//b8b82kUaJmat5TDh5fGRSZuFg/OvNLL4gGT4IjyOZd6MTvARxD5G5drNLQ211ut9KIY0/OJZsAKY6UlU91pYFk8kUBzMfpJwyprjwCNLPF7kUR/yULZj2PLEC8MQW86GUH67i9mkaKIlzlTi3Lloma02PuGPE2VjUANLrk8ZKi04O1fzEgN7dP9HUvN7ISStBs+uFdFfRmSqY7WxRnGIYk0R1UelD8DH01UcuRIsnFmM8nplzJdrQNnxUtm3CTIaZppy7zEeUdzJddCPQfn4gLkpkQH3KrLsksgGS8w1lsn0FTby+13vvyvDdeSjCVEs26I2KEPtVADChnVtOyhAG4X0Pt2xGl+Ub2Wb4xNW/6rFNKTCfDqKvmpHVVPv4otCJaKR2wduLcAiZTQHTNIIEumD4VNSA/fEucEj2AnX9dyXSYc8h4mmS1cLQ7yomBWQ7/f3kyZJ0DBZzYGXQygCWQM3q0tQBmcTzKWyDGrXG+HQjSHHlf9mS6d52s9TdE69If3CU7l4fmyyrplrQfyenTJwfgMsBAAD//+Pz3bKgAQAAX01ea
+```
+
+```plain
+License type  : Beta
+Max rules     : 200
+Issue to      : Potential users
+Expire        : 2019-01-15 17:30:09
 ```
 
 ## 沟通
@@ -359,4 +386,12 @@ Telegram: https://t.me/kungfupro
   copy(finals.join('\n'))
   console.log('Done! 规则已拷贝到剪切板，请前往规则设置，添加域名后缀规则吧。')
 })(copy)
+```
+
+### netflix 规则
+
+域名关键字规则
+```plain
+nflxvideo
+netflix
 ```
