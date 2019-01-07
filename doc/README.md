@@ -285,6 +285,10 @@ Issue to      : Potential users
 Expire        : 2019-01-15 17:30:09
 ```
 
+### 参与用户调研免费获得授权码
+
+**前往[用户调研](https://docs.google.com/forms/d/e/1FAIpQLSdGODqmamMXBOLzkxpdI9XMOJORIPuq3PJuO1Ozsby6E6FSlw/viewform?usp=pp_url)表单**
+
 ## 沟通
 
 Telegram: https://t.me/kungfupro
